@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Today</string>
+    <string name="task_name">Task to hadle</string>
+    <string name="task_deadline_date">Task deadline date</string>
+</resources>
