@@ -69,12 +69,12 @@ public class TaskToDoList {
         }
     }
 
-    public void addTasks(TaskToDo taskToDo) {
+    public void addTask(TaskToDo taskToDo) {
         ContentValues values = getContentValues(taskToDo);
         mDatabase.insert(TaskToDoTable.NAME, null, values);
     }
 
-    public void deleteCrime(TaskToDo taskToDo) {
+    public void deleteTask(TaskToDo taskToDo) {
         mDatabase.delete(TaskToDoTable.NAME, TaskToDoTable.Cols.UUID + " = ?",
                 new String[]{taskToDo.getID().toString()});
 

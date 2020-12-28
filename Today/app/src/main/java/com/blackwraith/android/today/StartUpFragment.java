@@ -4,6 +4,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -17,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class StartUpFragment extends Fragment {
@@ -25,18 +29,18 @@ public class StartUpFragment extends Fragment {
     private TaskToDoAdapter mAdapter;
 
     private Callbacks mCallbacks;
+    ItemTouchHelper.SimpleCallback SwipedLeft = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
 
-    public interface Callbacks {
-        void onTaskSelected(TaskToDo task);
-
-        void onTaskCompleted(TaskToDo task);
-    }
-
-    /* TO DO
- przetestuj jak działa drag nie tylko swipe -> może będzie lepszy
-  */
-
-
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            TaskToDo completedTask = TaskToDoList.get(getActivity()).getTasks().get(viewHolder.getAdapterPosition());
+            mCallbacks.onTaskDeleted(completedTask);
+        }
+    };
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -45,9 +49,9 @@ public class StartUpFragment extends Fragment {
     }
 
     @Override
-    public void onDetach() {
-        super.onDetach();
-        mCallbacks = null;
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Nullable
@@ -66,6 +70,33 @@ public class StartUpFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.start_up_fragment, menu);
+        //miejsce na dodatkowy kod wyświetlający np dodatkowe informacje na pasku menu
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.new_task:
+                TaskToDo task = new TaskToDo();
+                TaskToDoList.get(getActivity()).addTask(task);
+                mCallbacks.onTaskSelected(task);
+                updateUI();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mCallbacks = null;
+    }
 
     @Override
     public void onResume() {
@@ -73,7 +104,8 @@ public class StartUpFragment extends Fragment {
         updateUI();
     }
 
-    private void updateUI() {
+
+    public void updateUI() {
         Log.d(TAG, "Wywołanie metody: updateUI() w StartUpFragment");
         TaskToDoList taskToDoList = TaskToDoList.get(getActivity());
         List<TaskToDo> tasksToDo = taskToDoList.getTasks();
@@ -87,7 +119,13 @@ public class StartUpFragment extends Fragment {
     }
 
 
+    public interface Callbacks {
+        void onTaskSelected(TaskToDo task);
 
+        void onTaskCompleted(TaskToDo task);
+
+        void onTaskDeleted(TaskToDo task);
+    }
 
     private class TaskHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView mTitleTextView;
@@ -101,15 +139,17 @@ public class StartUpFragment extends Fragment {
             mTitleTextView = (TextView) itemView.findViewById(R.id.task_name);
             mDeadlineTextView = (TextView) itemView.findViewById(R.id.task_deadline);
             mProgressBar = (ProgressBar) itemView.findViewById(R.id.task_progress_bar);
+
         }
 
         public void bind(TaskToDo taskToDo) {
             Log.d(TAG, "Wywołanie metody: bind w StartUpFargment");
             mTaskToDo = taskToDo;
             mTitleTextView.setText(mTaskToDo.getTitle());
-            SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss ");
-            mDeadlineTextView.setText(dateFormat.format(mTaskToDo.getDeadlineDate()));
-            mProgressBar.setProgress(50);
+//            SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss ");
+//            mDeadlineTextView.setText(dateFormat.format(mTaskToDo.getDeadlineDate()));
+            mDeadlineTextView.setText(mTaskToDo.getDeadlineDate().format(DateTimeFormatter.ofPattern("EEE, d MMM yyyy HH:mm:ss ")));
+
         }
 
         @Override
@@ -145,22 +185,9 @@ public class StartUpFragment extends Fragment {
             return mTaskToDos.size();
         }
 
-        public void setTasksToDo(List<TaskToDo> taskToDos){
+        public void setTasksToDo(List<TaskToDo> taskToDos) {
             mTaskToDos = taskToDos;
         }
     }
-
-    ItemTouchHelper.SimpleCallback SwipedLeft = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
-        @Override
-        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-            return false;
-        }
-
-        @Override
-        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            TaskToDo completedTask = TaskToDoList.get(getActivity()).getTasks().get(viewHolder.getAdapterPosition());
-            mCallbacks.onTaskCompleted(completedTask);
-        }
-    };
 
 }

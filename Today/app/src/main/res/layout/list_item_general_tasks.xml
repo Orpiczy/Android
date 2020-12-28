@@ -33,13 +33,16 @@
 
     <ProgressBar
         android:id="@+id/task_progress_bar"
-        style="@android:style/Widget.ProgressBar.Large"
+        style="@style/GeneralTaskProgressBar"
+        android:max="100"
+        android:progress="75"
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:progress="85"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <!--        domyślne circle progress bary krąża w nieskończoność-->
+    <!--        style="@android:style/Widget.Holo.ProgressBar"-->
 
 <!--    <ImageView-->
 <!--        android:id="@+id/task_image"-->

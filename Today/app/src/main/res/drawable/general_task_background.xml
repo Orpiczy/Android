@@ -8,11 +8,12 @@
 
     <gradient
         android:angle="45"
-        android:centerX="50%"
+        android:centerX="20%"
         android:centerY="50%"
-        android:endColor="#717872"
-        android:gradientRadius="20dp"
-        android:startColor="#16E4EA"
+        android:startColor="@color/colorSecondary"
+        android:centerColor="@color/colorSecondary"
+        android:endColor="@color/colorBackground"
+        android:gradientRadius="250dp"
         android:type="linear" />
 
     <!--If your shape requires only one solid color-->
@@ -25,11 +26,11 @@
 
     <!--Use android:dashWidth="2dp" and android:dashGap="2dp"
     to add dashes to your stroke-->
-<!--    <stroke-->
-<!--        android:width="0.1dp"-->
-<!--        android:color="#000000" />-->
+    <stroke
+        android:width="0.1dp"
+        android:color="#000000" />
 
-    <!--If you want to add padding-->
+<!--    If you want to add padding-->
 
     <padding
         android:bottom="10dp"

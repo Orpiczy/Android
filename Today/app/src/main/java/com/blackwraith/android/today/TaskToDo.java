@@ -18,6 +18,8 @@ public class TaskToDo {
     public TaskToDo() {
         mID = UUID.randomUUID();
         mCreationDate = LocalDateTime.now();
+        mDeadlineDate = LocalDateTime.now().plusDays(1);
+        mCompletionDate = LocalDateTime.now().minusDays(1);
         mIsCompleted = false;
         mCategory = 0; //0 - General
     }
