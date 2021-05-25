@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Materi Al</string>
+
+    <string name="hello_world">Witaj, świecie!</string>
+    <string name="action_settings">Ustawienia</string>
+    <string name="munch">Mniam, mniam, mniam...</string>
+</resources>

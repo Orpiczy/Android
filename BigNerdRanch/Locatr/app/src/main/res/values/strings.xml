@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Locatr</string>
+    <string name="search">Znajdź miejsce zrobione w okolicy</string>
+    <string name="image_description">GeoLocatedImage</string>
+    <string name="lack_of_permission_alert">Aplikacja używa lokalizacji w bardzo uzasadnionym celu</string>
+    <string name="title_activity_maps">Map</string>
+</resources>

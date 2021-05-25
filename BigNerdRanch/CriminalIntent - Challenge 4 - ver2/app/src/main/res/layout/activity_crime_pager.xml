@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.viewpager.widget.ViewPager
+
+        android:id="@+id/crime_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <Button
+        android:id="@+id/first_case_button"
+        android:layout_width="180dp"
+        android:layout_height="45dp"
+        android:text="@string/first_case"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="16dp"/>
+
+
+    <Button
+        android:id="@+id/last_case_button"
+        android:layout_width="180dp"
+        android:layout_height="45dp"
+        android:text="@string/last_case"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"/>
+</FrameLayout>

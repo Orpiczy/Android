@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">GeoQuiz</string>
+    <string name="next_button">Nastepne</string>
+    <string name="prev_button">Poprzedznie</string>
+    <string name="true_button">Prawda</string>
+    <string name="false_button">Fałsz</string>
+    <string name="correct_toast">Poprawna odpowiedź ;)</string>
+    <string name="answered_toast">Udzielono już odpowiedzi na to pytanie</string>
+    <string name="incorrect_toast">Niepoprawna odpowiedź :(</string>
+    <!--pytania-->
+    <string name="question_australi">Canberra jest stolicą Australi.</string>
+    <string name="question_oceans">Ocean spokojny jest większy niż Atlantycki.</string>
+    <string name="question_mideast">Kanał sueski łączy Morze Czerwone z Oceanem Indysjkim.</string>
+    <string name="question_africa">Źródło rzeki Nil znajduje się w Egipcie.</string>
+    <string name="question_americas">Amazonka to najdłuższa rzeka obu Ameryk.</string>
+    <string name="question_asia">Jezioro Bajkał to najstarsze i najgłębsze jezioro słodkowodne na świecie.</string>
+    <!--druga aktywnosc-->
+    <string name="warning_text">Czy na pewno chcesz to zrobić?</string>
+    <string name="show_answer_button">Pokaż odpowiedź</string>
+    <string name="cheat_button">Podpowiedź</string>
+    <string name="judgement_toast">Oszukiwanie jest złe</string>
+
+</resources>

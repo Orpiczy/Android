@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PhotoGallery</string>
+    <string name="search">Szukaj</string>
+    <string name="clear_search">Wyczyść wyszukiwanie</string>
+    <string name="start_polling">Uruchom wyszukiwanie w tle</string>
+    <string name="stop_polling">Zatrzymaj wyszukiwanie w tle</string>
+    <string name="new_pictures_title">Nowe zdjęcia w galerii</string>
+    <string name="new_pictures_text">Masz nowe zdjęcia w galerii.</string>
+</resources>
